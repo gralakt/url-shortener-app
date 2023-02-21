@@ -15,7 +15,7 @@ def generate_short_url():
 
 
 # Endpoint dla tworzenia skróconych URLi
-@app.route('/short/', methods=['POST'])
+@app.route('/long/', methods=['POST'])
 def create_short_url():
     # Odczytywanie długiego URLa z żądania HTTP
     long_url = request.json.get('long_url')
@@ -28,7 +28,7 @@ def create_short_url():
 
 
 # Endpoint do rozwijania skróconych URLi
-@app.route('/<short_url>/')
+@app.route('/short/<short_url>/')
 def expand_url(short_url):
     # Pobieranie oryginalnego URLa z bazy danych
     long_url = url_database.get(short_url)
