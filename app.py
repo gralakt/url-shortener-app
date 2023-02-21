@@ -28,7 +28,7 @@ def create_short_url():
 
 
 # Endpoint do rozwijania skróconych URLi
-@app.route('/<short_url>')
+@app.route('/<short_url>/')
 def expand_url(short_url):
     # Pobieranie oryginalnego URLa z bazy danych
     long_url = url_database.get(short_url)

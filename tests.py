@@ -19,13 +19,13 @@ class TestApp(unittest.TestCase):
     def test_expand_url(self):
         url_database['abcd12'] = 'http://example.com'
         with app.test_client() as client:
-            resp = client.get('/abcd12')
+            resp = client.get('/abcd12/')
             self.assertEqual(resp.status_code, 302)
             self.assertEqual(resp.headers['Location'], 'http://example.com')
 
     def test_expand_unknown_url(self):
         with app.test_client() as client:
-            resp = client.get('/unknown')
+            resp = client.get('/unknown/')
             self.assertEqual(resp.status_code, 404)
 
 if __name__ == '__main__':
