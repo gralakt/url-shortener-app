@@ -30,14 +30,15 @@ def create_short_url():
 # Endpoint do rozwijania skróconych URLi
 @app.route('/short/<short_url>/')
 def expand_url(short_url):
-    # Pobieranie oryginalnego URLa z bazy danych
-    long_url = url_database.get(short_url)
-    if long_url:
-        # Przekierowywanie na oryginalny URL
-        return redirect(long_url)
-    else:
+    try:
+        # Pobieranie oryginalnego URLa z bazy danych
+        long_url = url_database[short_url]
+    except KeyError:
         # Zwracanie błędu HTTP 404 Not Found
         abort(404)
+    else:
+        # Przekierowywanie na oryginalny URL
+        return redirect(long_url)
 
 
 if __name__ == '__main__':
